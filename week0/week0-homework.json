@@ -1,0 +1,35 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "My first stack with EC2 instance",
+  
+  "Parameters" : {
+      
+    "KeyName": {
+      "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instance",
+      "Type": "AWS::EC2::KeyPair::KeyName",
+      "ConstraintDescription" : "Must be the name of an existing EC2 KeyPair."
+    }
+  },
+  
+    
+  "Resources" : {     
+      
+    "EC2Instance": {  
+      "Type": "AWS::EC2::Instance",
+      "Properties":{
+        "ImageId":"ami-0b36cd6786bcfe120",
+        "InstanceType":"t2.micro",
+        "KeyName":{
+          "Ref":"KeyName"
+        }
+      }
+    }          
+  },
+  
+  "Outputs" : {
+    "InstanceId" : {
+      "Description" : "Output should return instance id",
+      "Value" : { "Ref" : "EC2Instance" }
+    }
+  }
+}
