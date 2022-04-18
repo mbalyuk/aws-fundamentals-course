@@ -27,9 +27,9 @@
   },
   
   "Outputs" : {
-    "InstanceId" : {
+    "PublicIp" : {
       "Description" : "Output should return instance id",
-      "Value" : { "Ref" : "EC2Instance" }
+      "Value" : { "GetAttr" : "EC2Instance.PublicIp" }
     }
   }
 }
