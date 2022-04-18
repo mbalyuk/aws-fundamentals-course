@@ -7,6 +7,7 @@
     "KeyName": {
       "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instance",
       "Type": "AWS::EC2::KeyPair::KeyName",
+      "Default": "mbaliuk_key",
       "ConstraintDescription" : "Must be the name of an existing EC2 KeyPair."
     }
   },
@@ -16,6 +17,7 @@
       
     "EC2Instance": {  
       "Type": "AWS::EC2::Instance",
+      "DeletionPolicy": "Retain",
       "Properties":{
         "ImageId":"ami-0b36cd6786bcfe120",
         "InstanceType":"t2.micro",
@@ -29,7 +31,7 @@
   "Outputs" : {
     "PublicIp" : {
       "Description" : "Output should return instance id",
-      "Value" : { "GetAttr" : "EC2Instance.PublicIp" }
+      "Value" : { "Fn::GetAtt" : [ "EC2Instance", "PublicIp" ]}
     }
   }
 }
